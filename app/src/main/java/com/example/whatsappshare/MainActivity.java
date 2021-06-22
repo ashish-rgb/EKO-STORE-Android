@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -14,54 +15,45 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
 
-    EditText etPhone , etMessage;
-    Button btSend;
+    Button text ,images,documents;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        etPhone = findViewById(R.id.et_phone);
-        etMessage = findViewById(R.id.et_message);
-        btSend = findViewById(R.id.bt_send);
 
-        btSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                    if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED){
-                        sendMessage();
-                    }else {
-                        ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.SEND_SMS},100);
-                    }
+        //defining all the buttons
+        text = findViewById(R.id.bt_text);
+        images = findViewById(R.id.bt_images);
+        documents = findViewById(R.id.bt_documents);
 
-            }
-        });
     }
 
-            private void sendMessage() {
-                String sPhone = etPhone.getText().toString().trim();
-                String sMessage = etMessage.getText().toString().trim();
-
-                if (!sPhone.equals("")&& !sMessage.equals("")){
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(sPhone,null,sMessage,null,null);
-
-                    Toast.makeText(getApplicationContext(),"SMS sent Successfully :)",Toast.LENGTH_LONG).show();
-                }else {
-                    Toast.makeText(getApplicationContext(),"Enter Message First",Toast.LENGTH_SHORT).show();
-                }
-            }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 100 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            sendMessage();
-        }else {
-            Toast.makeText(getApplicationContext(),"Permission Denied!",Toast.LENGTH_SHORT).show();
+        //It will go to the send text page
+        public void sendtext(View view){
+            Intent gotoText = new Intent();
+            gotoText.setClass(this,textchat.class);
+            startActivity(gotoText);
         }
+
+    //It will go to the send images page
+    public void sendimages(View view){
+        Intent gotoImages = new Intent();
+        gotoImages.setClass(this,imageschat.class);
+        startActivity(gotoImages);
     }
+
+    //It will go to the send document page
+    public void sendDocuments(View view){
+        Intent gotoDocuments = new Intent();
+        gotoDocuments.setClass(this,documentchat.class);
+        startActivity(gotoDocuments);
+    }
+
+
 }
