@@ -14,12 +14,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.os.StrictMode;
 
 import org.w3c.dom.Text;
 
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
 public class MainActivity extends AppCompatActivity {
 
-    Button text ,images,documents;
+    Button bttext ,btimages, btdocuments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         //defining all the buttons
-        text = findViewById(R.id.bt_text);
-        images = findViewById(R.id.bt_images);
-        documents = findViewById(R.id.bt_documents);
+        bttext = findViewById(R.id.bt_text);
+        btimages = findViewById(R.id.bt_images);
+        btdocuments = findViewById(R.id.bt_documents);
+
+        ActivityCompat.requestPermissions(this,new String[]{READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE},PackageManager.PERMISSION_GRANTED);
+
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
 
     }
 

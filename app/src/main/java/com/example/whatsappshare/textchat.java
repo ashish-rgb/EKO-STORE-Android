@@ -19,7 +19,7 @@ public class textchat extends AppCompatActivity {
 
     EditText etPhone , etMessage;
     Button btSend;
-
+   private int reqcode = 100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +35,10 @@ public class textchat extends AppCompatActivity {
         btSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ContextCompat.checkSelfPermission(textchat.this, Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED){
+                if (ContextCompat.checkSelfPermission(textchat.this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED){
                     sendMessage();
                 }else {
-                    ActivityCompat.requestPermissions(textchat.this,new String[]{Manifest.permission.SEND_SMS},100);
+                    ActivityCompat.requestPermissions(textchat.this,new String[]{Manifest.permission.SEND_SMS},reqcode);
                 }
 
             }
@@ -49,7 +49,7 @@ public class textchat extends AppCompatActivity {
         String sPhone = etPhone.getText().toString().trim();
         String sMessage = etMessage.getText().toString().trim();
 
-        if (!sPhone.equals("")&& !sMessage.equals("")){
+        if (!sPhone.isEmpty() && !sMessage.isEmpty()){
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(sPhone,null,sMessage,null,null);
 
@@ -62,7 +62,7 @@ public class textchat extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 100 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (requestCode == reqcode && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             sendMessage();
         }else {
             Toast.makeText(getApplicationContext(),"Permission Denied!",Toast.LENGTH_SHORT).show();

@@ -6,4 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".documentchat">
 
+    <ImageView
+        android:id="@+id/docShare"
+        android:layout_width="160dp"
+        android:layout_height="145dp"
+        android:layout_marginStart="122dp"
+        android:layout_marginTop="163dp"
+        android:background="#9C27B0"
+        android:onClick="docShare"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_share" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="413dp"
+        android:layout_height="80dp"
+        android:background="#E9AEF3"
+        android:fontFamily="sans-serif-black"
+        android:text="SHARE DOCUMENTS"
+        android:textAlignment="center"
+        android:textColor="#F3F3F3"
+        android:textDirection="firstStrongLtr"
+        android:textIsSelectable="false"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
