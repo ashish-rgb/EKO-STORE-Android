@@ -20,7 +20,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class documentchat extends AppCompatActivity {
 
-    private String stringFile = Environment.getExternalStorageDirectory().getPath() + File.separator + getString(R.string.text10);
+    private String stringFile = Environment.getExternalStorageDirectory().getPath() + File.separator + getString(R.string.type_pdf);
 
     ImageView img;
 
@@ -44,15 +44,15 @@ public class documentchat extends AppCompatActivity {
         File file = new File(stringFile);
 
         if (!file.exists()){
-            Toast.makeText(this,getString(R.string.text4),Toast.LENGTH_LONG).show();
+            Toast.makeText(this,getString(R.string.file_existence),Toast.LENGTH_LONG).show();
             return;
         }
 
         Intent intentShare = new Intent(Intent.ACTION_SEND);
-        intentShare.setType(getString(R.string.text8));
-        intentShare.putExtra(Intent.EXTRA_STREAM, Uri.parse(getString(R.string.text9) + file));
+        intentShare.setType(getString(R.string.appn_pdf));
+        intentShare.putExtra(Intent.EXTRA_STREAM, Uri.parse(getString(R.string.file) + file));
 
-        startActivity(Intent.createChooser(intentShare,getString(R.string.text5)));
+        startActivity(Intent.createChooser(intentShare,getString(R.string.file_share)));
 
     }
 }

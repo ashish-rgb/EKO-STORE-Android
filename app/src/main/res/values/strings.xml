@@ -1,16 +1,16 @@
 <resources>
     <string name="app_name">whatsappshare</string>
 
-    <string name="text1">SMS sent Successfully :)</string>
-    <string name="text2">Enter Message First</string>
-    <string name="text3">Permission Denied!</string>
-    <string name="text4">File doesn\'t exists</string>
-    <string name="text5">Share file</string>
-    <string name="text6">Share image via</string>
-    <string name="text7">image/png</string>
-    <string name="text8">application/pdf</string>
-    <string name="text9">file://</string>
-    <string name="text10">Test.pdf</string>
-    <string name="text11">donut.png</string>
-    <string name="text12">.provider</string>
+    <string name="success_msg">SMS sent Successfully :)</string>
+    <string name="message">Enter Message First</string>
+    <string name="permission">Permission Denied!</string>
+    <string name="file_existence">File doesn\'t exists</string>
+    <string name="file_share">Share file</string>
+    <string name="img_share">Share image via</string>
+    <string name="img_type">image/png</string>
+    <string name="appn_pdf">application/pdf</string>
+    <string name="file">file://</string>
+    <string name="type_pdf">Test.pdf</string>
+    <string name="img">donut.png</string>
+    <string name="provider">.provider</string>
 </resources>

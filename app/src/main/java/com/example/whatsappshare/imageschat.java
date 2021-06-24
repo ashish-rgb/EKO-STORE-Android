@@ -44,7 +44,7 @@ public class imageschat extends AppCompatActivity {
                 Bitmap bitmap=((BitmapDrawable)drawable).getBitmap();
 
                 try {
-                    File file = new File(getApplicationContext().getExternalCacheDir(), File.separator + getString(R.string.text11));
+                    File file = new File(getApplicationContext().getExternalCacheDir(), File.separator + getString(R.string.img));
                     FileOutputStream fOut = new FileOutputStream(file);
                     bitmap.compress(Bitmap.CompressFormat.PNG, reqcode, fOut);
                     fOut.flush();
@@ -52,13 +52,13 @@ public class imageschat extends AppCompatActivity {
                     file.setReadable(true, false);
                     final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    Uri photoURI = FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID +getString(R.string.text12), file);
+                    Uri photoURI = FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID +getString(R.string.provider), file);
 
                     intent.putExtra(Intent.EXTRA_STREAM, photoURI);
                     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    intent.setType(getString(R.string.text7));
+                    intent.setType(getString(R.string.img_type));
 
-                    startActivity(Intent.createChooser(intent, getString(R.string.text6)));
+                    startActivity(Intent.createChooser(intent, getString(R.string.img_share)));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -68,55 +68,7 @@ public class imageschat extends AppCompatActivity {
 
 
 
-//    public void btShare (View view){
-//        Uri imgUri = Uri.parse(pictureFile.getAbsolutePath());
-//        Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
-//        whatsappIntent.setType("text/plain");
-//        whatsappIntent.setPackage("com.whatsapp");
-//        whatsappIntent.putExtra(Intent.EXTRA_TEXT, "The text you wanted to share");
-//        whatsappIntent.putExtra(Intent.EXTRA_STREAM, imgUri);
-//        whatsappIntent.setType("image/jpeg");
-//        whatsappIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//
-//        try {
-//            activity.startActivity(whatsappIntent);
-//        } catch (android.content.ActivityNotFoundException ex) {
-//            ToastHelper.MakeShortText("Whatsapp have not been installed.");
-//        }
-//    }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.share_option,menu);
-//
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//
-//        switch (item.getItemId()){
-//            case  R.id.share:
-//
-//                BitmapDrawable drawable = (BitmapDrawable) fullImage.getDrawable();
-//                Bitmap bitmap = drawable.getBitmap();
-//
-//                String bitmapPath = MediaStore.Images.Media.insertImage(getContentResolver(),bitmap,"title",null);
-//
-//                Uri uri = Uri.parse(bitmapPath);
-//
-//                Intent intent = new Intent(Intent.ACTION_SEND);
-//                intent.setType("img/png");
-//                intent.putExtra(Intent.EXTRA_STREAM,uri);
-//                intent.putExtra(Intent.EXTRA_TEXT,"Play Store Link :https://play.google.com/store/apps/details?id=" + getPackageName());
-//                startActivity(Intent.createChooser(intent,"Share"));
-//
-//                break;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 
 
 }

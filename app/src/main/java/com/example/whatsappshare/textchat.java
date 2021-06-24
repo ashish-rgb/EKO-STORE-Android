@@ -55,9 +55,9 @@ public class textchat extends AppCompatActivity {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(sPhone,null,sMessage,null,null);
 
-            Toast.makeText(getApplicationContext(),getString(R.string.text1),Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),getString(R.string.success_msg),Toast.LENGTH_LONG).show();
         }else {
-            Toast.makeText(getApplicationContext(),getString(R.string.text2),Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),getString(R.string.message),Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -67,7 +67,7 @@ public class textchat extends AppCompatActivity {
         if (requestCode == reqcode && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             sendMessage();
         }else {
-            Toast.makeText(getApplicationContext(),getString(R.string.text3),Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),getString(R.string.permission),Toast.LENGTH_SHORT).show();
         }
     }
 }
