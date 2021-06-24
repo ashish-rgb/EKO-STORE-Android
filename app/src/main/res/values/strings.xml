@@ -4,4 +4,13 @@
     <string name="text1">SMS sent Successfully :)</string>
     <string name="text2">Enter Message First</string>
     <string name="text3">Permission Denied!</string>
+    <string name="text4">File doesn\'t exists</string>
+    <string name="text5">Share file</string>
+    <string name="text6">Share image via</string>
+    <string name="text7">image/png</string>
+    <string name="text8">application/pdf</string>
+    <string name="text9">file://</string>
+    <string name="text10">Test.pdf</string>
+    <string name="text11">donut.png</string>
+    <string name="text12">.provider</string>
 </resources>

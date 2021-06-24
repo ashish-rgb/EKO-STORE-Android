@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ public class textchat extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("StringFormatInvalid")
     private void sendMessage() {
         String sPhone = etPhone.getText().toString().trim();
         String sMessage = etMessage.getText().toString().trim();
@@ -53,9 +55,9 @@ public class textchat extends AppCompatActivity {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(sPhone,null,sMessage,null,null);
 
-            Toast.makeText(getApplicationContext(),"SMS sent Successfully :)",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),getString(R.string.text1),Toast.LENGTH_LONG).show();
         }else {
-            Toast.makeText(getApplicationContext(),"Enter Message First",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),getString(R.string.text2),Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -65,7 +67,7 @@ public class textchat extends AppCompatActivity {
         if (requestCode == reqcode && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             sendMessage();
         }else {
-            Toast.makeText(getApplicationContext(),"Permission Denied!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),getString(R.string.text3),Toast.LENGTH_SHORT).show();
         }
     }
 }

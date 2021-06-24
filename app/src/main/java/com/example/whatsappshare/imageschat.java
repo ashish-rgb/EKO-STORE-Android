@@ -44,7 +44,7 @@ public class imageschat extends AppCompatActivity {
                 Bitmap bitmap=((BitmapDrawable)drawable).getBitmap();
 
                 try {
-                    File file = new File(getApplicationContext().getExternalCacheDir(), File.separator +"donut.png");
+                    File file = new File(getApplicationContext().getExternalCacheDir(), File.separator + getString(R.string.text11));
                     FileOutputStream fOut = new FileOutputStream(file);
                     bitmap.compress(Bitmap.CompressFormat.PNG, reqcode, fOut);
                     fOut.flush();
@@ -52,13 +52,13 @@ public class imageschat extends AppCompatActivity {
                     file.setReadable(true, false);
                     final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    Uri photoURI = FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID +".provider", file);
+                    Uri photoURI = FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID +getString(R.string.text12), file);
 
                     intent.putExtra(Intent.EXTRA_STREAM, photoURI);
                     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    intent.setType("image/png");
+                    intent.setType(getString(R.string.text7));
 
-                    startActivity(Intent.createChooser(intent, "Share image via"));
+                    startActivity(Intent.createChooser(intent, getString(R.string.text6)));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
