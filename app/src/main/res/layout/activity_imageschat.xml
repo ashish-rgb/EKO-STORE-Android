@@ -7,11 +7,26 @@
     tools:context=".imageschat">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="417dp"
-        android:layout_height="512dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/fullImage"
+        android:layout_width="219dp"
+        android:layout_height="266dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="89dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        android:src="@drawable/donut"/>
+
+    <Button
+        android:id="@+id/btShare"
+        android:layout_width="144dp"
+        android:layout_height="93dp"
+        android:layout_marginTop="108dp"
+        android:text="Share"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fullImage" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

@@ -1,71 +1,35 @@
 package com.example.whatsappshare;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.telephony.SmsManager;
+import android.os.StrictMode;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+
 
 public class textchat extends AppCompatActivity {
 
-    EditText etPhone , etMessage;
-    Button btSend;
-   private int reqcode = 100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_textchat);
 
-        etPhone = findViewById(R.id.et_phone);
-        etMessage = findViewById(R.id.et_message);
-        btSend = findViewById(R.id.bt_send);
 
-        Intent caller = getIntent();
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
 
-
-        btSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (ContextCompat.checkSelfPermission(textchat.this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED){
-                    sendMessage();
-                }else {
-                    ActivityCompat.requestPermissions(textchat.this,new String[]{Manifest.permission.SEND_SMS},reqcode);
-                }
-
-            }
-        });
     }
 
-    private void sendMessage() {
-        String sPhone = etPhone.getText().toString().trim();
-        String sMessage = etMessage.getText().toString().trim();
+    public void btShareText(View view){
+        Intent intentShare = new Intent(Intent.ACTION_SEND);
+        intentShare.setType(getString(R.string.text_type));
+        intentShare.putExtra(Intent.EXTRA_SUBJECT,getString(R.string.subject));
+        intentShare.putExtra(Intent.EXTRA_TEXT,getString(R.string.message));
 
-        if (!sPhone.isEmpty() && !sMessage.isEmpty()){
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(sPhone,null,sMessage,null,null);
-
-            Toast.makeText(getApplicationContext(),"SMS sent Successfully :)",Toast.LENGTH_LONG).show();
-        }else {
-            Toast.makeText(getApplicationContext(),"Enter Message First",Toast.LENGTH_SHORT).show();
-        }
+        startActivity(Intent.createChooser(intentShare, getString(R.string.success_msg)));
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == reqcode && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            sendMessage();
-        }else {
-            Toast.makeText(getApplicationContext(),"Permission Denied!",Toast.LENGTH_SHORT).show();
-        }
-    }
 }
